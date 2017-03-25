@@ -1,4 +1,9 @@
-# Udacity Self Driving Car Nano Degree - Behavior Cloning Project
+#Teaching Keras Tensorflow with Self Driving Car simulator
+
+## Project Requirements
+python3
+tensorflow==1.0
+keras==1.2
 
 ## 1. Quick Start
 
