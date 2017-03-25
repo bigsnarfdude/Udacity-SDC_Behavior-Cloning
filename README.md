@@ -1,7 +1,7 @@
 # Teaching Keras Tensorflow with Self Driving Car simulator
 
-## Project Requirements
-python3
+## Project Tested 
+python 2.7.6
 tensorflow==1.0
 keras==1.2
 
