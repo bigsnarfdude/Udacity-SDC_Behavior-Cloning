@@ -30,46 +30,46 @@ where `t1b1`, `t1b2` are different training sessions from simulator, with genera
 ### 1.2 Use a pretrained model to drive in simulator
 To start the self-driving model, run the following command from the root folder, 
 ```cmd
-python -m sdc.drive
+python -m src.drive
 ``` 
 Run the Udacity simulator in autonomous mode to start driving. The script will load models saved in `models/model.json` and `models/model.h5` by default.
 
 ### 1.3 Train your own model
 There are two steps to train a model based on your own data, 
 - Put data somewhere, e.g., in `data` folder
-- Config the training data in `sdc/config.py` by setting the `train_data` variables (examples are given in the script).
+- Config the training data in `src/config.py` by setting the `train_data` variables (examples are given in the script).
 
 To build a model from scratch, run
 ```cmd
-python -m sdc.train_regression --train --nb_epoch 6
+python -m src.train_regression --train --nb_epoch 6
 ```
-where `sdc.train_regression` build a vgg16-based regression model from CenterImage to Steer. `--nb_epoch` is the number of training epoches.
+where `src.train_regression` build a vgg16-based regression model from CenterImage to Steer. `--nb_epoch` is the number of training epoches.
 
 To continuously train a model from a previous one, run
 ```cmd
-python -m sdc.train_regression --train --restore --nb_epoch 6
+python -m src.train_regression --train --restore --nb_epoch 6
 ```
 
 To load a trained model to evaluate on test data without any training, simply run
 ```cmd
-python -m sdc.train_regression --restore
+python -m src.train_regression --restore
 ```
 
 ### 1.4 Inspect Training Results
-The training script will split data into `training`, `validation` and `test` sets. The sizes of `validation` and `test` are 10K each by default, which can be configured in `sdc/train_regression.py` script.
+The training script will split data into `training`, `validation` and `test` sets. The sizes of `validation` and `test` are 10K each by default, which can be configured in `src/train_regression.py` script.
 
 After each training/evaluation run, a test result will be saved in `tmp/test_result.csv`. Use `insepct_training.py` to load and inpsect the result.  You can also run the ipython notebook `understand_model.ipynb` to ***visualize*** the self-driving-model based on test results.
 
 
 ## 2. Code Organization
-- `sdc/`: self-driving-car python package
+- `src/`: self-driving-car python package
 	- `train_regression.py`: the main entry point to build/train/evaluate a SDC model. It treats steering prediction as a regression problem and so the name. It is currently the only training script implemented.
 	- `config.py`: configuring the training process, e.g., training data, selected model, image preprocessing and etc.
 	- `data.py`: implements `DataSet` class that reads and processes images in batches to feed deep learning models.
 	- `process.py`: implements different preprocessing methods for different settings.
 	- `model.py`: implements `SteerRegressionModel` class that encapsulates several deep learing architectures, e.g., `VGG16 pretrained model`, `VGG16 multiple-layer as inputs`, `Nvidia model` and `comma.ai model`. The configuration and selection of these models can be referred to in `config.py`.
 	- `drive.py`: implements simulated driving. It is a modified version of the script provided by Udacity. 
-- `tests/`: test scripts for sdc pacakge
+- `tests/`: test scripts for src pacakge
 - `data/`: training data
 - `models/`: saved models from training
 - `tmp/`: storing temporary results, e.g., `test_result.csv`
