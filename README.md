@@ -183,12 +183,12 @@ I am also interested in understanding how the trained model actually works. One 
 I am not using `deconvolution` layers but instead a cheaper `image resize` operation to approximate the effect. It is similar to `unpooling` but much cheaper to implement. This is only possible because the layer I choose still has enough details to restore in the original image space. The following shows what a SDC model "sees" at left/right turnings. Intuitively the brighter the regions, the more important they are to the model decision. 
 
 ### What a SDC model sees at left turning
-![SDCSeesLeftTurn](SDCSeesLeftTurn.png)
+![SDCSeesLeftTurn](https://github.com/bigsnarfdude/Udacity-SDC_Behavior-Cloning/blob/master/assets/SDCSeesLeftTurn.png)
 
 ## What a SDC model sees at right turning 
-![SDCSeesRightTurn](SDCSeesRightTurn.png)
+![SDCSeesRightTurn](https://github.com/bigsnarfdude/Udacity-SDC_Behavior-Cloning/blob/master/assets/SDCSeesRightTurn.png)
 
-For a verbose explaination, please refer to the notebook [understand_model.ipynb](understand_model.ipynb)
+For a verbose explaination, please refer to the notebook [understand_model.ipynb](https://github.com/bigsnarfdude/Udacity-SDC_Behavior-Cloning/blob/master/exploration/understand_model.ipynb)
 
 <br><br>
 *The conversion of this Markdown to HTML is supported by [grip](https://pypi.python.org/pypi/grip), running* `grip README.md --export README.html`
