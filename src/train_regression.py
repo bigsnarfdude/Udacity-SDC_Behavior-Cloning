@@ -47,8 +47,8 @@ nb_epoch = args.nb_epoch
 # load training data
 dataset = data.DataSet(config.train_data).preprocess()
 # split to train, validation and test
-trainset, others = dataset.split(test_size=20000)
-valset, testset = others.split(test_size=10000)
+trainset, others = dataset.split(test_size=2000)
+valset, testset = others.split(test_size=1000)
 
 train_size = trainset.size()
 val_size = valset.size()

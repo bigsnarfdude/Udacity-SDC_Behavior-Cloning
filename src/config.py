@@ -13,8 +13,8 @@ from . import process
 batch_size = 256
 model_prefix = "models/model"
 xycols = ["CenterImage", "SteeringAngle"]
-train_data = [
-          ("data/t1r1/driving_log.csv", "data/t1r1/IMG")
+train_data = [("data/t1r1/driving_log.csv", "data/t1r1/IMG")]
+"""
         , ("data/t1r2/driving_log.csv", "data/t1r2/IMG/")
         , ("data/t1r3/driving_log.csv", "data/t1r3/IMG/")
         , ("data/t1r4/driving_log.csv", "data/t1r4/IMG/")
@@ -37,7 +37,7 @@ train_data = [
         , ("data/t2r4/driving_log.csv", "data/t2r4/IMG/")
         , ("data/t2w1/driving_log.csv", "data/t2w1/IMG/")
 ]
-
+"""
 
 # # nvidia model
 # # 1. the default normalization used by conv2d requires input to be in range (0, 1)
