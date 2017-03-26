@@ -188,7 +188,7 @@ I am not using `deconvolution` layers but instead a cheaper `image resize` opera
 ## What a SDC model sees at right turning 
 ![SDCSeesRightTurn](SDCSeesRightTurn.png)
 
-For a verbose explaination, please refer to the notebook [understand_model.ipynb](understand_model.ipynb)
+For a verbose explaination, please refer to the notebook [understand_model.ipynb](https://github.com/bigsnarfdude/Udacity-SDC_Behavior-Cloning/blob/master/exploration/understand_model.ipynb)
 
 <br><br>
 *The conversion of this Markdown to HTML is supported by [grip](https://pypi.python.org/pypi/grip), running* `grip README.md --export README.html`
