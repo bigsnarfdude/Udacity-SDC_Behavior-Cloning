@@ -29,21 +29,28 @@ class DataSet(object):
         self.log = pd.concat(logs, axis=0, ignore_index=True)
         self.index = 0
 
+
     def preprocess(self):
-        """preprocess dataset"""
+        """
+        preprocess dataset
+        """
         self.remove_noise()
         # using mirror translation makes training for more epochs possible
         self.mirror()
         self.shuffle()
         return self
 
+
     def mirror(self):
-        """Mirror the center image and minus the steering"""
+        """
+        Mirror the center image and minus the steering
+        """
         mirror = self.log.copy()
         mirror["CenterImage"] = mirror["CenterImage"] + "_mirror"
         mirror["SteeringAngle"] = - mirror["SteeringAngle"].astype(np.float32)
         self.log = pd.concat([self.log, mirror], axis=0, ignore_index=True)
         return self
+
 
     def smooth(self, window):
         """
@@ -55,6 +62,7 @@ class DataSet(object):
         print("steering angle has been smoothed based on window %d" % window)
         return self
 
+
     def remove_noise(self):
         N = self.log.shape[0]
         # focus on speed >= 20 
@@ -62,15 +70,18 @@ class DataSet(object):
         print("%d records have been removed due to speed <= 20" % (N- self.log.shape[0]))
         return self
 
+
     def shuffle(self):
         self.log = self.log.reindex(np.random.permutation(self.log.index))
         return self
+
 
     def copy_constructor(self, log, index):
         rhs = copy.deepcopy(self)
         rhs.log = log
         rhs.index = index
         return rhs
+
 
     def split(self, test_size):
         itrain, itest = train_test_split(np.arange(self.log.shape[0]), test_size=test_size)
@@ -80,9 +91,11 @@ class DataSet(object):
         test_dataset = self.copy_constructor(test_log, 0)
         return (train_dataset, test_dataset)
 
+
     def reset(self):
         self.index = 0
         return self
+
 
     def make_batch_generator(self, batch_size, col_grps, process_fns = None):
         """
@@ -117,16 +130,20 @@ class DataSet(object):
                     batch_items = batch_items[batch_size:]
         return _generator(self)
 
+
     def size(self):
         return self.log.shape[0]
+
 
     def __next__(self):
         self.index %= self.size()
         self.index += 1
         return self.log.iloc[self.index-1]
 
+
     def __iter__(self):
         return self
+
 
     def next(self):
         return __next__(self)
